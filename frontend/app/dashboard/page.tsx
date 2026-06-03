@@ -20,9 +20,7 @@ import apiService, {
 
 export default function DashboardPage() {
   const [status, setStatus] =
-    useState<DetectionStatus | null>(
-      null
-    );
+    useState<DetectionStatus | null>(null);
 
   const [isConnected, setIsConnected] =
     useState(false);
@@ -52,98 +50,105 @@ export default function DashboardPage() {
         !videoRef.current ||
         !isRunning ||
         !isConnected
-      )
+      ) {
         return;
+      }
 
       const video = videoRef.current;
 
       if (
         video.videoWidth === 0 ||
         video.videoHeight === 0
-      )
-        return;
-
-      const canvas =
-        document.createElement(
-          'canvas'
-        );
-
-      canvas.width =
-        video.videoWidth;
-
-      canvas.height =
-        video.videoHeight;
-
-      const ctx =
-        canvas.getContext('2d');
-
-      if (!ctx) return;
-
-      ctx.drawImage(
-        video,
-        0,
-        0,
-        canvas.width,
-        canvas.height
-      );
-
-      const image =
-        canvas.toDataURL(
-          'image/jpeg'
-        );
-
-      const response =
-        await apiService.detect(
-          image
-        );
-
-      if (
-        response.success &&
-        response.data
       ) {
-        setStatus(response.data);
+        return;
+      }
+
+      try {
+        const canvas =
+          document.createElement('canvas');
+
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        const ctx =
+          canvas.getContext('2d');
+
+        if (!ctx) return;
+
+        ctx.drawImage(
+          video,
+          0,
+          0,
+          canvas.width,
+          canvas.height
+        );
+
+        // Remove data:image/jpeg;base64,
+        const image = canvas
+          .toDataURL('image/jpeg')
+          .split(',')[1];
+
+        const response =
+          await apiService.detect(image);
 
         if (
-          response.data.state ===
-            'Dangerous' ||
-          response.data.alarm
+          response.success &&
+          response.data
         ) {
-          setShowAlert(true);
+          setStatus(response.data);
+
+          if (
+            response.data.state ===
+              'Dangerous' ||
+            response.data.alarm
+          ) {
+            setShowAlert(true);
+          }
         }
+      } catch (error) {
+        console.error(
+          'Detection error:',
+          error
+        );
       }
     }, [
-      isConnected,
       isRunning,
+      isConnected,
     ]);
 
   useEffect(() => {
     checkConnection();
 
-    const interval =
+    const connectionInterval =
       setInterval(
         checkConnection,
         10000
       );
 
     return () =>
-      clearInterval(interval);
+      clearInterval(
+        connectionInterval
+      );
   }, [checkConnection]);
 
   useEffect(() => {
     if (
       !isRunning ||
       !isConnected
-    )
+    ) {
       return;
+    }
 
-    const interval =
+    const detectionInterval =
       setInterval(
         detectFrame,
         700
       );
 
     return () =>
-      clearInterval(interval);
+      clearInterval(
+        detectionInterval
+      );
   }, [
     detectFrame,
     isRunning,
@@ -157,6 +162,7 @@ export default function DashboardPage() {
 
     if (!running) {
       setStatus(null);
+      setShowAlert(false);
     }
   };
 
@@ -165,12 +171,18 @@ export default function DashboardPage() {
       await checkConnection();
     };
 
+  const handleAlertDismiss =
+    () => {
+      setShowAlert(false);
+    };
+
   return (
     <div className="min-h-screen pb-8">
       <Navbar />
 
       <main className="pt-24 px-4">
         <div className="max-w-7xl mx-auto">
+          {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold mb-2">
               Monitoring Dashboard
@@ -178,11 +190,14 @@ export default function DashboardPage() {
 
             <p className="text-muted-foreground">
               Real-time driver
-              drowsiness detection
+              drowsiness detection and
+              monitoring system
             </p>
           </div>
 
+          {/* Main Grid */}
           <div className="grid lg:grid-cols-3 gap-6">
+            {/* Left Side */}
             <div className="lg:col-span-2 space-y-6">
               <VideoFeed
                 ref={videoRef}
@@ -233,6 +248,7 @@ export default function DashboardPage() {
               </div>
             </div>
 
+            {/* Right Side */}
             <div className="space-y-6">
               <StatusCard
                 status={status}
@@ -270,8 +286,8 @@ export default function DashboardPage() {
       {showAlert && (
         <AlertPopup
           status={status}
-          onDismiss={() =>
-            setShowAlert(false)
+          onDismiss={
+            handleAlertDismiss
           }
         />
       )}
@@ -323,24 +339,32 @@ function QuickStat({
   value,
   status,
 }: QuickStatProps) {
-  const colors = {
+  const statusColors = {
     safe:
-      'border-green-500/30 bg-green-500/10 text-green-400',
+      'border-green-500/30 bg-green-500/10',
     warning:
-      'border-yellow-500/30 bg-yellow-500/10 text-yellow-400',
+      'border-yellow-500/30 bg-yellow-500/10',
     danger:
-      'border-red-500/30 bg-red-500/10 text-red-400',
+      'border-red-500/30 bg-red-500/10',
+  };
+
+  const textColors = {
+    safe: 'text-green-400',
+    warning: 'text-yellow-400',
+    danger: 'text-red-400',
   };
 
   return (
     <div
-      className={`glass-card rounded-xl p-4 border ${colors[status]}`}
+      className={`glass-card rounded-xl p-4 border ${statusColors[status]}`}
     >
-      <div className="text-xs uppercase mb-1">
+      <div className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
         {label}
       </div>
 
-      <div className="text-2xl font-bold font-mono">
+      <div
+        className={`text-2xl font-mono font-bold ${textColors[status]}`}
+      >
         {value}
       </div>
     </div>

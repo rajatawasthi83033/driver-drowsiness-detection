@@ -22,22 +22,12 @@ export function ControlPanel({
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleStart = async () => {
-    setIsLoading(true);
-    const response = await apiService.startDetection();
-    if (response.success) {
-      onStatusChange(true);
-    }
-    setIsLoading(false);
+  const handleStart = () => {
+  onStatusChange(true);
   };
-
-  const handleStop = async () => {
-    setIsLoading(true);
-    const response = await apiService.stopDetection();
-    if (response.success) {
-      onStatusChange(false);
-    }
-    setIsLoading(false);
+  
+  const handleStop = () => {
+    onStatusChange(false);
   };
 
   return (

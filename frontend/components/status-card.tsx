@@ -117,7 +117,7 @@ export function StatusCard({
           >
             <span
               className={cn(
-                'text-2xl font-bold',
+                'text-xl font-bold',
                 config.color
               )}
             >

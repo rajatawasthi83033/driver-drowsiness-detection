@@ -9,19 +9,19 @@ app = FastAPI(
     title="Driver Drowsiness Detection API"
 )
 
-# Static folder mount karo
-app.mount(
-    "/static",
-    StaticFiles(directory="app/static"),
-    name="static"
-)
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+)
+
+# Static folder mount
+app.mount(
+    "/static",
+    StaticFiles(directory="static"),
+    name="static"
 )
 
 
@@ -32,8 +32,7 @@ class ImageRequest(BaseModel):
 @app.get("/")
 def home():
     return {
-        "message": "Driver Drowsiness Detection API",
-        "alarm_sound": "/static/alarm_sound.mp3"
+        "message": "Driver Drowsiness Detection API"
     }
 
 

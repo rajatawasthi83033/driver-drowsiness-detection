@@ -105,7 +105,7 @@ export default function DashboardPage() {
         const image = canvas
           .toDataURL(
             'image/jpeg',
-            0.6
+            0.8
           )
           .split(',')[1];
   
@@ -184,7 +184,7 @@ export default function DashboardPage() {
     const detectionInterval =
       setInterval(
         detectFrame,
-        200
+        50
       );
 
     return () =>

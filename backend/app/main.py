@@ -1,11 +1,19 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from app.detector import detect_drowsiness
 
 app = FastAPI(
     title="Driver Drowsiness Detection API"
+)
+
+# Static folder mount karo
+app.mount(
+    "/static",
+    StaticFiles(directory="app/static"),
+    name="static"
 )
 
 app.add_middleware(
@@ -24,7 +32,8 @@ class ImageRequest(BaseModel):
 @app.get("/")
 def home():
     return {
-        "message": "Driver Drowsiness Detection API"
+        "message": "Driver Drowsiness Detection API",
+        "alarm_sound": "/static/alarm_sound.mp3"
     }
 
 

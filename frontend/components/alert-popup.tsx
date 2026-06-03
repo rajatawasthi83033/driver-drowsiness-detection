@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { AlertTriangle, X, Volume2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 import type { DetectionStatus } from '@/services/api';
 
 interface AlertPopupProps {
@@ -11,81 +10,83 @@ interface AlertPopupProps {
   onDismiss: () => void;
 }
 
-export function AlertPopup({ status, onDismiss }: AlertPopupProps) {
+export function AlertPopup({
+  status,
+  onDismiss,
+}: AlertPopupProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (status?.state === 'Dangerous' || status?.alarm) {
+    if (
+      status?.state === 'Dangerous' ||
+      status?.sleep_risk
+    ) {
       setIsVisible(true);
     }
-  }, [status?.state, status?.alarm]);
+  }, [status]);
 
-  if (!isVisible || status?.state !== 'Dangerous') {
+  if (
+    !isVisible ||
+    (status?.state !== 'Dangerous' &&
+      !status?.sleep_risk)
+  ) {
     return null;
   }
+
+  const handleClose = () => {
+    setIsVisible(false);
+    onDismiss();
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm animate-in fade-in duration-300">
       <div className="relative w-full max-w-md mx-4">
-        {/* Pulsing background */}
         <div className="absolute inset-0 bg-red-500/20 rounded-2xl animate-pulse" />
-        
+
         <div className="relative glass-card rounded-2xl border-2 border-red-500 p-6 neon-border-red">
-          {/* Close button */}
           <button
-            onClick={() => {
-              setIsVisible(false);
-              onDismiss();
-            }}
+            onClick={handleClose}
             className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
 
           <div className="flex flex-col items-center text-center">
-            {/* Alert Icon */}
             <div className="relative mb-4">
               <div className="w-20 h-20 rounded-full bg-red-500/20 flex items-center justify-center animate-pulse">
                 <AlertTriangle className="w-10 h-10 text-red-500" />
               </div>
+
               <div className="absolute inset-0 rounded-full bg-red-500/30 blur-xl animate-pulse" />
             </div>
 
-            <h2 className="text-2xl font-bold text-red-400 neon-red mb-2">
+            <h2 className="text-2xl font-bold text-red-400 mb-2">
               DROWSINESS ALERT!
             </h2>
-            
+
             <p className="text-muted-foreground mb-6">
-              Dangerous levels of drowsiness detected. 
+              Dangerous levels of drowsiness detected.
               Please pull over safely and take a break immediately.
             </p>
 
-            {/* Action buttons */}
             <div className="flex gap-3 w-full">
               <Button
                 variant="outline"
                 className="flex-1 gap-2 border-red-500/50 text-red-400 hover:bg-red-500/10"
-                onClick={() => {
-                  setIsVisible(false);
-                  onDismiss();
-                }}
+                onClick={handleClose}
               >
                 <Volume2 className="w-4 h-4" />
                 I&apos;m Awake
               </Button>
-              
+
               <Button
                 className="flex-1 bg-red-600 hover:bg-red-700 text-white"
-                onClick={() => {
-                  setIsVisible(false);
-                  onDismiss();
-                }}
+                onClick={handleClose}
               >
                 Dismiss Alert
               </Button>
             </div>
 
-            {/* Safety reminder */}
             <p className="mt-4 text-xs text-red-400/70">
               Your safety is our priority. Take regular breaks every 2 hours.
             </p>

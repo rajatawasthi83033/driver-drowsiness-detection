@@ -89,7 +89,7 @@ class ApiService {
 
   async checkConnection(): Promise<boolean> {
     try {
-      const response = await fetch(`${this.baseUrl}/status`);
+      const response = await fetch(`${this.baseUrl}/`);
       return response.ok;
     } catch {
       return false;

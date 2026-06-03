@@ -258,9 +258,9 @@ export default function DashboardPage() {
                 <QuickStat
                   label="EAR"
                   value={
-                    status?.ear?.toFixed(
-                      3
-                    ) || '---'
+                    status?.ear !== undefined
+                      ? status.ear.toFixed(3)
+                      : '0.000'
                   }
                   status={getEarStatus(
                     status?.ear
@@ -270,9 +270,9 @@ export default function DashboardPage() {
                 <QuickStat
                   label="MAR"
                   value={
-                    status?.mar?.toFixed(
-                      3
-                    ) || '---'
+                    status?.mar !== undefined
+                      ? status.mar.toFixed(3)
+                      : '0.000'
                   }
                   status={getMarStatus(
                     status?.mar

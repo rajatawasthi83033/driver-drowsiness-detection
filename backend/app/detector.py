@@ -5,7 +5,7 @@ import numpy as np
 
 from collections import deque
 
-eye_history = deque(maxlen=10)
+eye_history = deque(maxlen=8)
 
 mp_face = mp.solutions.face_mesh
 
@@ -172,7 +172,7 @@ def detect_drowsiness(image_data: str):
             len(eye_history)
         )
 
-        sleep_risk = ratio > 0.85
+        sleep_risk = ratio > 0.75
 
         if sleep_risk:
             state = "Dangerous"

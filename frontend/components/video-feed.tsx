@@ -1,6 +1,10 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import {
+  useEffect,
+  forwardRef,
+} from 'react';
+
 import { cn } from '@/lib/utils';
 import { Camera, Wifi, WifiOff } from 'lucide-react';
 
@@ -9,27 +13,39 @@ interface VideoFeedProps {
   isConnected: boolean;
 }
 
-export function VideoFeed({
-  isRunning,
-  isConnected,
-}: VideoFeedProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
+export const VideoFeed = forwardRef<
+  HTMLVideoElement,
+  VideoFeedProps
+>(function VideoFeed(
+  {
+    isRunning,
+    isConnected,
+  },
+  videoRef
+) {
   useEffect(() => {
     let stream: MediaStream | null = null;
 
     const startCamera = async () => {
       try {
-        stream = await navigator.mediaDevices.getUserMedia({
-          video: true,
-          audio: false,
-        });
+        stream =
+          await navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: false,
+          });
 
-        if (videoRef.current) {
+        if (
+          videoRef &&
+          typeof videoRef !== 'function' &&
+          videoRef.current
+        ) {
           videoRef.current.srcObject = stream;
         }
       } catch (err) {
-        console.error('Camera access denied', err);
+        console.error(
+          'Camera access denied',
+          err
+        );
       }
     };
 
@@ -39,10 +55,12 @@ export function VideoFeed({
 
     return () => {
       if (stream) {
-        stream.getTracks().forEach((track) => track.stop());
+        stream
+          .getTracks()
+          .forEach((track) => track.stop());
       }
     };
-  }, [isRunning]);
+  }, [isRunning, videoRef]);
 
   return (
     <div className="glass-card rounded-xl overflow-hidden">
@@ -124,4 +142,4 @@ export function VideoFeed({
       </div>
     </div>
   );
-}
+});

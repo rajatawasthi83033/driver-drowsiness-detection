@@ -18,6 +18,8 @@ import apiService, {
   type DetectionStatus,
 } from '@/services/api';
 
+
+
 export default function DashboardPage() {
   const [status, setStatus] =
     useState<DetectionStatus | null>(null);
@@ -34,6 +36,12 @@ export default function DashboardPage() {
   const videoRef =
     useRef<HTMLVideoElement>(null);
 
+  const processingRef =
+  useRef(false);
+
+  const [alertCooldown, setAlertCooldown] =
+    useState(false);
+
   const checkConnection =
     useCallback(async () => {
       const connected =
@@ -46,6 +54,11 @@ export default function DashboardPage() {
 
   const detectFrame =
     useCallback(async () => {
+  
+      if (processingRef.current) {
+        return;
+      }
+  
       if (
         !videoRef.current ||
         !isRunning ||
@@ -53,28 +66,34 @@ export default function DashboardPage() {
       ) {
         return;
       }
-
-      const video = videoRef.current;
-
-      if (
-        video.videoWidth === 0 ||
-        video.videoHeight === 0
-      ) {
-        return;
-      }
-
+  
+      processingRef.current = true;
+  
       try {
+  
+        const video = videoRef.current;
+  
+        if (
+          video.videoWidth === 0 ||
+          video.videoHeight === 0
+        ) {
+          return;
+        }
+  
         const canvas =
           document.createElement('canvas');
-
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-
+  
+        canvas.width =
+          video.videoWidth;
+  
+        canvas.height =
+          video.videoHeight;
+  
         const ctx =
           canvas.getContext('2d');
-
+  
         if (!ctx) return;
-
+  
         ctx.drawImage(
           video,
           0,
@@ -82,40 +101,57 @@ export default function DashboardPage() {
           canvas.width,
           canvas.height
         );
-
-        // Remove data:image/jpeg;base64,
+  
         const image = canvas
-          .toDataURL('image/jpeg')
+          .toDataURL(
+            'image/jpeg',
+            0.6
+          )
           .split(',')[1];
-
+  
         const response =
-          await apiService.detect(image);
-
+          await apiService.detect(
+            image
+          );
+  
         if (
           response.success &&
           response.data
         ) {
-          setStatus(response.data);
-
+          setStatus(
+            response.data
+          );
+  
           if (
-            response.data.state ===
-              'Dangerous' ||
-            response.data.alarm
+            !alertCooldown &&
+            (
+              response.data.state ===
+                'Dangerous' ||
+              response.data.alarm
+            )
           ) {
             setShowAlert(true);
           }
         }
+  
       } catch (error) {
+  
         console.error(
           'Detection error:',
           error
         );
+  
+      } finally {
+  
+        processingRef.current = false;
+  
       }
+  
     }, [
       isRunning,
       isConnected,
+      alertCooldown
     ]);
-
   useEffect(() => {
     checkConnection();
 
@@ -142,7 +178,7 @@ export default function DashboardPage() {
     const detectionInterval =
       setInterval(
         detectFrame,
-        700
+        200
       );
 
     return () =>
@@ -173,9 +209,16 @@ export default function DashboardPage() {
 
   const handleAlertDismiss =
     () => {
+  
       setShowAlert(false);
+  
+      setAlertCooldown(true);
+  
+      setTimeout(() => {
+        setAlertCooldown(false);
+      }, 10000);
+  
     };
-
   return (
     <div className="min-h-screen pb-8">
       <Navbar />

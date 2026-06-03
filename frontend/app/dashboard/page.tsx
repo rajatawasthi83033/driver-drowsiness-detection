@@ -105,7 +105,7 @@ export default function DashboardPage() {
         const image = canvas
           .toDataURL(
             'image/jpeg',
-            0.8
+            0.5
           )
           .split(',')[1];
   

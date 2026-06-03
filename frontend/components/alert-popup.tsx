@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { AlertTriangle, X, Volume2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { DetectionStatus } from '@/services/api';
@@ -10,18 +10,46 @@ interface AlertPopupProps {
   onDismiss: () => void;
 }
 
+const ALARM_URL =
+  'https://driver-drowsiness-detection-frgy.onrender.com/static/alarm_sound.mp3';
+
 export function AlertPopup({
   status,
   onDismiss,
 }: AlertPopupProps) {
   const [isVisible, setIsVisible] = useState(false);
 
+  const audioRef = useRef<HTMLAudioElement | null>(
+    null
+  );
+
   useEffect(() => {
-    if (
+    audioRef.current = new Audio(ALARM_URL);
+
+    audioRef.current.loop = true;
+
+    return () => {
+      audioRef.current?.pause();
+      audioRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    const isDanger =
       status?.state === 'Dangerous' ||
-      status?.sleep_risk
-    ) {
+      status?.sleep_risk;
+
+    if (isDanger) {
       setIsVisible(true);
+
+      audioRef.current
+        ?.play()
+        .catch((err) => {
+          console.error(
+            'Audio play blocked:',
+            err
+          );
+        });
     }
   }, [status]);
 
@@ -34,7 +62,14 @@ export function AlertPopup({
   }
 
   const handleClose = () => {
+    audioRef.current?.pause();
+
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0;
+    }
+
     setIsVisible(false);
+
     onDismiss();
   };
 
@@ -76,7 +111,7 @@ export function AlertPopup({
                 onClick={handleClose}
               >
                 <Volume2 className="w-4 h-4" />
-                I&apos;m Awake
+                I'm Awake
               </Button>
 
               <Button
@@ -88,7 +123,8 @@ export function AlertPopup({
             </div>
 
             <p className="mt-4 text-xs text-red-400/70">
-              Your safety is our priority. Take regular breaks every 2 hours.
+              Your safety is our priority.
+              Take regular breaks every 2 hours.
             </p>
           </div>
         </div>

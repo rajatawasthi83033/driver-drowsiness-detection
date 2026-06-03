@@ -5,7 +5,7 @@ import numpy as np
 
 from collections import deque
 
-eye_history = deque(maxlen=8)
+eye_history = deque(maxlen=6)
 
 mp_face = mp.solutions.face_mesh
 

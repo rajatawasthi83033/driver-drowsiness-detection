@@ -9,7 +9,6 @@ export interface DetectionStatus {
   ear: number;
   mar: number;
   sleep_risk: boolean;
-  alarm: boolean;
 }
 
 export interface ApiResponse<T> {
@@ -25,7 +24,9 @@ class ApiService {
     this.baseUrl = baseUrl;
   }
 
-  async detect(image: string): Promise<ApiResponse<DetectionStatus>> {
+  async detect(
+    image: string
+  ): Promise<ApiResponse<DetectionStatus>> {
     try {
       const response = await fetch(
         `${this.baseUrl}/detect`,

@@ -267,6 +267,84 @@ export default function AboutPage() {
             </div>
           </section>
 
+          {/* Team Section */}
+          <section className="mb-16">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">
+                Our <span className="text-safe">Team</span>
+              </h2>
+            
+              <p className="text-safe font-medium text-lg mb-4">
+                Team Visionary Coders
+              </p>
+            
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                This project was successfully developed by a dedicated team of students
+                passionate about Artificial Intelligence, Computer Vision, and Road Safety.
+              </p>
+            </div>
+                      
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
+          
+              <div className="glass-card rounded-xl p-6 text-center">
+                <div className="w-16 h-16 rounded-full bg-safe/10 flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-safe" />
+                </div>
+                <h3 className="text-xl font-semibold">Rajat Awasthi</h3>
+                <p className="text-safe text-sm mt-1">
+                  Team Lead & Full Stack Developer
+                </p>
+              </div>
+          
+              <div className="glass-card rounded-xl p-6 text-center">
+                <div className="w-16 h-16 rounded-full bg-safe/10 flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-safe" />
+                </div>
+                <h3 className="text-xl font-semibold">Yogesh Kumar</h3>
+                <p className="text-safe text-sm mt-1">
+                  Backend Developer
+                </p>
+              </div>
+          
+              <div className="glass-card rounded-xl p-6 text-center">
+                <div className="w-16 h-16 rounded-full bg-safe/10 flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-safe" />
+                </div>
+                <h3 className="text-xl font-semibold">Vaibhav Shrivastav</h3>
+                <p className="text-safe text-sm mt-1">
+                  Frontend Developer
+                </p>
+              </div>
+          
+              <div className="glass-card rounded-xl p-6 text-center">
+                <div className="w-16 h-16 rounded-full bg-safe/10 flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-safe" />
+                </div>
+                <h3 className="text-xl font-semibold">Palak Shrivastav</h3>
+                <p className="text-safe text-sm mt-1">
+                  UI/UX Designer
+                </p>
+              </div>
+          
+              <div className="glass-card rounded-xl p-6 text-center">
+                <div className="w-16 h-16 rounded-full bg-safe/10 flex items-center justify-center mx-auto mb-4">
+                  <Users className="w-8 h-8 text-safe" />
+                </div>
+                <h3 className="text-xl font-semibold">Anuska Maurya</h3>
+                <p className="text-safe text-sm mt-1">
+                  Testing & Documentation
+                </p>
+              </div>
+          
+            </div>
+          </section>
+
+          
+
+          
+
+          
+
           {/* API Endpoints Reference */}
           <section className="mb-16">
             <div className="glass-card rounded-2xl p-8">

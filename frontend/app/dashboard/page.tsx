@@ -158,19 +158,21 @@ export default function DashboardPage() {
     ]);
   useEffect(() => {
     checkConnection();
-
+  
+    const t1 = setTimeout(checkConnection, 500);
+    const t2 = setTimeout(checkConnection, 1500);
+    const t3 = setTimeout(checkConnection, 3000);
+  
     const connectionInterval =
-      setInterval(
-        checkConnection,
-        10000
-      );
-
-    return () =>
-      clearInterval(
-        connectionInterval
-      );
+      setInterval(checkConnection, 500);
+  
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      clearInterval(connectionInterval);
+    };
   }, [checkConnection]);
-
   useEffect(() => {
     if (
       !isRunning ||

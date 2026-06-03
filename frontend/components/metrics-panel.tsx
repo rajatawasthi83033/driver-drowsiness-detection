@@ -95,7 +95,7 @@ export function MetricsPanel({
                     : 'text-green-400'
                 }
               >
-                {status.status || 'Monitoring'}
+                {status.state}
               </span>
             </div>
           </div>

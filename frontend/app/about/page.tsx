@@ -291,9 +291,6 @@ export default function AboutPage() {
                   <Users className="w-8 h-8 text-safe" />
                 </div>
                 <h3 className="text-xl font-semibold">Rajat Awasthi</h3>
-                <p className="text-safe text-sm mt-1">
-                  Team Lead & Full Stack Developer
-                </p>
               </div>
           
               <div className="glass-card rounded-xl p-6 text-center">
@@ -301,9 +298,6 @@ export default function AboutPage() {
                   <Users className="w-8 h-8 text-safe" />
                 </div>
                 <h3 className="text-xl font-semibold">Yogesh Kumar</h3>
-                <p className="text-safe text-sm mt-1">
-                  Backend Developer
-                </p>
               </div>
           
               <div className="glass-card rounded-xl p-6 text-center">
@@ -311,9 +305,7 @@ export default function AboutPage() {
                   <Users className="w-8 h-8 text-safe" />
                 </div>
                 <h3 className="text-xl font-semibold">Vaibhav Shrivastav</h3>
-                <p className="text-safe text-sm mt-1">
-                  Frontend Developer
-                </p>
+        
               </div>
           
               <div className="glass-card rounded-xl p-6 text-center">
@@ -321,9 +313,7 @@ export default function AboutPage() {
                   <Users className="w-8 h-8 text-safe" />
                 </div>
                 <h3 className="text-xl font-semibold">Palak Shrivastav</h3>
-                <p className="text-safe text-sm mt-1">
-                  UI/UX Designer
-                </p>
+                
               </div>
           
               <div className="glass-card rounded-xl p-6 text-center">
@@ -331,9 +321,7 @@ export default function AboutPage() {
                   <Users className="w-8 h-8 text-safe" />
                 </div>
                 <h3 className="text-xl font-semibold">Anuska Maurya</h3>
-                <p className="text-safe text-sm mt-1">
-                  Testing & Documentation
-                </p>
+                
               </div>
           
             </div>

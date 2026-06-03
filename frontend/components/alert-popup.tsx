@@ -19,17 +19,20 @@ export function AlertPopup({
 }: AlertPopupProps) {
   const [isVisible, setIsVisible] = useState(false);
 
-  const audioRef = useRef<HTMLAudioElement | null>(
-    null
-  );
+  const audioRef =
+    useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     audioRef.current = new Audio(ALARM_URL);
-
     audioRef.current.loop = true;
 
     return () => {
       audioRef.current?.pause();
+
+      if (audioRef.current) {
+        audioRef.current.currentTime = 0;
+      }
+
       audioRef.current = null;
     };
   }, []);
@@ -50,16 +53,16 @@ export function AlertPopup({
             err
           );
         });
+    } else {
+      audioRef.current?.pause();
+
+      if (audioRef.current) {
+        audioRef.current.currentTime = 0;
+      }
+
+      setIsVisible(false);
     }
   }, [status]);
-
-  if (
-    !isVisible ||
-    (status?.state !== 'Dangerous' &&
-      !status?.sleep_risk)
-  ) {
-    return null;
-  }
 
   const handleClose = () => {
     audioRef.current?.pause();
@@ -72,6 +75,10 @@ export function AlertPopup({
 
     onDismiss();
   };
+
+  if (!isVisible) {
+    return null;
+  }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm animate-in fade-in duration-300">

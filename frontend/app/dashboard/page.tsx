@@ -184,7 +184,7 @@ export default function DashboardPage() {
     const detectionInterval =
       setInterval(
         detectFrame,
-        50
+        100
       );
 
     return () =>

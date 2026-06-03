@@ -121,14 +121,17 @@ export default function DashboardPage() {
           setStatus(
             response.data
           );
-  
+        
+          const isDanger =
+            response.data.state ===
+              'Dangerous' ||
+            response.data.sleep_risk ||
+            response.data.alarm;
+        
           if (
-            !alertCooldown &&
-            (
-              response.data.state ===
-                'Dangerous' ||
-              response.data.alarm
-            )
+            isDanger &&
+            !showAlert &&
+            !alertCooldown
           ) {
             setShowAlert(true);
           }
@@ -150,7 +153,8 @@ export default function DashboardPage() {
     }, [
       isRunning,
       isConnected,
-      alertCooldown
+      alertCooldown,
+      showAlert
     ]);
   useEffect(() => {
     checkConnection();

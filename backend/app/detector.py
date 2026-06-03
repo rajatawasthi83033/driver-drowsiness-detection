@@ -63,7 +63,7 @@ def head_sleep_check(face):
     left = face.landmark[234].y
     right = face.landmark[454].y
 
-    if abs(left - right) > 0.05:
+    if abs(left - right) > 0.08:
         return True
 
     if nose > 0.75:

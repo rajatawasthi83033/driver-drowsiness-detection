@@ -1,0 +1,86 @@
+'use client';
+
+import { cn } from '@/lib/utils';
+import { Camera, Wifi, WifiOff } from 'lucide-react';
+import apiService from '@/services/api';
+
+interface VideoFeedProps {
+  isRunning: boolean;
+  isConnected: boolean;
+}
+
+export function VideoFeed({ isRunning, isConnected }: VideoFeedProps) {
+  const videoUrl = apiService.getVideoFeedUrl();
+
+  return (
+    <div className="glass-card rounded-xl overflow-hidden">
+      <div className="flex items-center justify-between p-4 border-b border-border/50">
+        <div className="flex items-center gap-2">
+          <Camera className="w-5 h-5 text-safe" />
+          <h3 className="text-sm font-medium">Live Camera Feed</h3>
+        </div>
+        <div className="flex items-center gap-2">
+          {isConnected ? (
+            <Wifi className="w-4 h-4 text-green-500" />
+          ) : (
+            <WifiOff className="w-4 h-4 text-red-500" />
+          )}
+          {isRunning && (
+            <span className="flex items-center gap-1 text-xs text-green-400">
+              <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+              REC
+            </span>
+          )}
+        </div>
+      </div>
+      
+      <div className="relative aspect-video bg-black">
+        {isConnected && isRunning ? (
+          <>
+            {/* Live video feed from backend */}
+            <img
+              src={videoUrl}
+              alt="Live camera feed"
+              className="w-full h-full object-cover"
+            />
+            
+            {/* Scan line effect */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+              <div className="w-full h-1 bg-gradient-to-b from-green-500/30 to-transparent animate-scan-line" />
+            </div>
+            
+            {/* Corner brackets for CCTV effect */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute top-2 left-2 w-8 h-8 border-l-2 border-t-2 border-green-500/50" />
+              <div className="absolute top-2 right-2 w-8 h-8 border-r-2 border-t-2 border-green-500/50" />
+              <div className="absolute bottom-2 left-2 w-8 h-8 border-l-2 border-b-2 border-green-500/50" />
+              <div className="absolute bottom-2 right-2 w-8 h-8 border-r-2 border-b-2 border-green-500/50" />
+            </div>
+          </>
+        ) : (
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <div className={cn(
+              'w-20 h-20 rounded-full border-2 border-dashed flex items-center justify-center mb-4',
+              isConnected ? 'border-muted-foreground' : 'border-red-500/50'
+            )}>
+              <Camera className={cn(
+                'w-8 h-8',
+                isConnected ? 'text-muted-foreground' : 'text-red-500/50'
+              )} />
+            </div>
+            <p className="text-muted-foreground text-sm">
+              {!isConnected 
+                ? 'Backend not connected' 
+                : 'Click "Start" to begin monitoring'}
+            </p>
+          </div>
+        )}
+        
+        {/* Timestamp overlay */}
+        <div className="absolute bottom-4 left-4 text-xs text-green-400/70 font-mono">
+          {new Date().toLocaleString()}
+        </div>
+      </div>
+    </div>
+  );
+}

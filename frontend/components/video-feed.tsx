@@ -2,11 +2,16 @@
 
 import {
   useEffect,
+  useRef,
   forwardRef,
 } from 'react';
 
 import { cn } from '@/lib/utils';
-import { Camera, Wifi, WifiOff } from 'lucide-react';
+import {
+  Camera,
+  Wifi,
+  WifiOff,
+} from 'lucide-react';
 
 interface VideoFeedProps {
   isRunning: boolean;
@@ -21,33 +26,37 @@ export const VideoFeed = forwardRef<
     isRunning,
     isConnected,
   },
-  videoRef
+  forwardedRef
 ) {
+  const internalRef =
+    useRef<HTMLVideoElement>(null);
+
   useEffect(() => {
-    let stream: MediaStream | null = null;
+    let stream: MediaStream | null =
+      null;
 
-    const startCamera = async () => {
-      try {
-        stream =
-          await navigator.mediaDevices.getUserMedia({
-            video: true,
-            audio: false,
-          });
+    const startCamera =
+      async () => {
+        try {
+          stream =
+            await navigator.mediaDevices.getUserMedia(
+              {
+                video: true,
+                audio: false,
+              }
+            );
 
-        if (
-          videoRef &&
-          typeof videoRef !== 'function' &&
-          videoRef.current
-        ) {
-          videoRef.current.srcObject = stream;
+          if (internalRef.current) {
+            internalRef.current.srcObject =
+              stream;
+          }
+        } catch (err) {
+          console.error(
+            'Camera access denied',
+            err
+          );
         }
-      } catch (err) {
-        console.error(
-          'Camera access denied',
-          err
-        );
-      }
-    };
+      };
 
     if (isRunning) {
       startCamera();
@@ -57,16 +66,31 @@ export const VideoFeed = forwardRef<
       if (stream) {
         stream
           .getTracks()
-          .forEach((track) => track.stop());
+          .forEach((track) =>
+            track.stop()
+          );
       }
     };
-  }, [isRunning, videoRef]);
+  }, [isRunning]);
+
+  useEffect(() => {
+    if (
+      typeof forwardedRef ===
+        'function' ||
+      !forwardedRef
+    )
+      return;
+
+    forwardedRef.current =
+      internalRef.current;
+  });
 
   return (
     <div className="glass-card rounded-xl overflow-hidden">
       <div className="flex items-center justify-between p-4 border-b border-border/50">
         <div className="flex items-center gap-2">
           <Camera className="w-5 h-5 text-safe" />
+
           <h3 className="text-sm font-medium">
             Live Camera Feed
           </h3>
@@ -92,7 +116,7 @@ export const VideoFeed = forwardRef<
         {isRunning ? (
           <>
             <video
-              ref={videoRef}
+              ref={internalRef}
               autoPlay
               muted
               playsInline
@@ -101,13 +125,6 @@ export const VideoFeed = forwardRef<
 
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
               <div className="w-full h-1 bg-gradient-to-b from-green-500/30 to-transparent animate-scan-line" />
-            </div>
-
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute top-2 left-2 w-8 h-8 border-l-2 border-t-2 border-green-500/50" />
-              <div className="absolute top-2 right-2 w-8 h-8 border-r-2 border-t-2 border-green-500/50" />
-              <div className="absolute bottom-2 left-2 w-8 h-8 border-l-2 border-b-2 border-green-500/50" />
-              <div className="absolute bottom-2 right-2 w-8 h-8 border-r-2 border-b-2 border-green-500/50" />
             </div>
           </>
         ) : (
@@ -131,14 +148,11 @@ export const VideoFeed = forwardRef<
             </div>
 
             <p className="text-muted-foreground text-sm">
-              Click Start To Begin Monitoring
+              Click Start To Begin
+              Monitoring
             </p>
           </div>
         )}
-
-        <div className="absolute bottom-4 left-4 text-xs text-green-400/70 font-mono">
-          {new Date().toLocaleString()}
-        </div>
       </div>
     </div>
   );

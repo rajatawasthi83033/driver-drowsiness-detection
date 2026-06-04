@@ -130,7 +130,7 @@ export default function DashboardPage() {
         
           if (
             isDanger &&
-            !showAlert
+            !showAlert &&
             !alertCooldown
           ) {
             setShowAlert(true);

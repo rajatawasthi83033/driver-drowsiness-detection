@@ -100,7 +100,7 @@ export default function LandingPage() {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-20 max-w-3xl mx-auto justify-center">
             {stats.map((stat) => (
               <div key={stat.label} className="glass-card rounded-xl p-6 text-center">
                 <div className="text-2xl md:text-3xl font-bold text-safe mb-1">

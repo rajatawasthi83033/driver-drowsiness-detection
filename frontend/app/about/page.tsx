@@ -147,19 +147,16 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
-                  stat: '1 in 25',
-                  label: 'Adult drivers report falling asleep while driving',
-                  icon: Users,
+                  stat: '4.8 Lakh+',
+                  label: 'Road accidents reported annually in India',
                 },
                 {
-                  stat: '$109B',
-                  label: 'Annual cost of drowsy driving crashes in the US',
-                  icon: Target,
+                  stat: '1.7 Lakh+',
+                  label: 'Lives lost on Indian roads every year',
                 },
                 {
-                  stat: '21 Hours',
+                  stat: '20 Hours',
                   label: 'Being awake this long impairs driving like alcohol',
-                  icon: Activity,
                 },
               ].map((item) => {
                 const Icon = item.icon;

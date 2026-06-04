@@ -191,7 +191,7 @@ export default function DashboardPage() {
     const detectionInterval =
       setInterval(
         detectFrame,
-        100
+        50
       );
 
     return () =>
@@ -357,7 +357,7 @@ function getEarStatus(
   if (ear === undefined)
     return 'safe';
 
-  if (ear > 0.25)
+  if (ear > 0.23)
     return 'safe';
 
   if (ear > 0.20)
@@ -372,10 +372,10 @@ function getMarStatus(
   if (mar === undefined)
     return 'safe';
 
-  if (mar < 0.5)
+  if (mar < 0.40)
     return 'safe';
 
-  if (mar < 0.6)
+  if (mar < 0.50)
     return 'warning';
 
   return 'danger';

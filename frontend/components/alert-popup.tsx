@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { AlertTriangle, X, Volume2 } from 'lucide-react';
+import { AlertTriangle, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { DetectionStatus } from '@/services/api';
 
@@ -112,14 +112,7 @@ export function AlertPopup({
             </p>
 
             <div className="flex gap-3 w-full">
-              <Button
-                variant="outline"
-                className="flex-1 gap-2 border-red-500/50 text-red-400 hover:bg-red-500/10"
-                onClick={handleClose}
-              >
-                <Volume2 className="w-4 h-4" />
-                I'm Awake
-              </Button>
+        
 
               <Button
                 className="flex-1 bg-red-600 hover:bg-red-700 text-white"

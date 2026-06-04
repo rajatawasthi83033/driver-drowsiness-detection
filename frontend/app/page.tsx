@@ -15,33 +15,34 @@ import { Navbar } from '@/components/navbar';
 const features = [
   {
     icon: Eye,
-    title: 'Real-time Eye Tracking',
-    description: 'Advanced computer vision monitors eye aspect ratio (EAR) to detect early signs of drowsiness.',
+    title: 'Driver Eye Monitoring',
+    description:
+      'Tracks eye movement and blink patterns to identify signs of fatigue during long journeys.',
   },
   {
     icon: Brain,
-    title: 'AI-Powered Analysis',
-    description: 'Machine learning algorithms analyze facial landmarks to assess fatigue levels accurately.',
+    title: 'AI-Based Fatigue Detection',
+    description:
+      'Advanced algorithms analyze facial landmarks and driver behaviour in real time.',
   },
   {
     icon: Bell,
-    title: 'Instant Alerts',
-    description: 'Audio and visual alerts trigger immediately when dangerous drowsiness is detected.',
+    title: 'Instant Safety Alerts',
+    description:
+      'Visual and audio warnings notify drivers before fatigue becomes dangerous.',
   },
   {
     icon: Shield,
-    title: 'Safety First',
-    description: 'Continuous monitoring helps prevent accidents caused by driver fatigue and microsleep.',
+    title: 'Made for Indian Roads',
+    description:
+      'Designed to support safer driving across highways, cities and long-distance transport routes.',
   },
 ];
-
 const stats = [
-  
-  { value: '99.2%', label: 'Detection Accuracy' },
-  { value: '<50ms', label: 'Response Time' },
-  { value: '24/7', label: 'Monitoring' },
+  { value: '1.5 Lakh+', label: 'Road Deaths Annually in India' },
+  { value: '13%', label: 'Crashes Linked to Fatigue & Sleepiness' },
+  { value: '24/7', label: 'Continuous Monitoring' },
 ];
-
 export default function LandingPage() {
   return (
     <div className="min-h-screen">
@@ -69,7 +70,7 @@ export default function LandingPage() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-safe/30 mb-8">
             <Activity className="w-4 h-4 text-safe" />
-            <span className="text-sm text-safe">AI-Powered Safety System</span>
+            <span className="text-sm text-safe">AI-Based Driver Safety System</span>
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-balance">
@@ -79,8 +80,10 @@ export default function LandingPage() {
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 text-pretty">
-            AI-powered real-time driver safety monitoring using computer vision 
-            and machine learning to prevent accidents caused by drowsy driving.
+            Designed for Indian roads, our AI-powered system continuously monitors
+            driver alertness using computer vision and facial analysis to help
+            reduce fatigue-related road accidents.
+            
           </p>
 
           {/* CTA Buttons */}
@@ -121,8 +124,8 @@ export default function LandingPage() {
               How We Keep You <span className="text-safe">Safe</span>
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Our advanced monitoring system uses cutting-edge technology to detect 
-              drowsiness before it becomes dangerous.
+              Our intelligent monitoring system continuously analyzes driver behaviour
+              and provides early warnings to help prevent fatigue-related accidents.
             </p>
           </div>
 
@@ -163,10 +166,10 @@ export default function LandingPage() {
                 
                 <div className="space-y-4">
                   {[
-                    'Live camera feed with AI overlay',
-                    'Color-coded status indicators',
-                    'Real-time EAR and MAR metrics',
-                    'Instant audio and visual alerts',
+                    'Live driver monitoring feed',
+                    'AI-powered fatigue detection',
+                    'Real-time alertness indicators',
+                    'Instant visual and audio warnings',
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-3">
                       <div className="w-2 h-2 rounded-full bg-safe" />
@@ -204,11 +207,11 @@ export default function LandingPage() {
                       <div className="text-xs text-muted-foreground">Status</div>
                     </div>
                     <div className="bg-secondary rounded-lg p-3 text-center">
-                      <div className="text-foreground text-sm font-bold">0.28</div>
+                      <div className="text-foreground text-sm font-bold">0.31</div>
                       <div className="text-xs text-muted-foreground">EAR</div>
                     </div>
                     <div className="bg-secondary rounded-lg p-3 text-center">
-                      <div className="text-foreground text-sm font-bold">0.15</div>
+                      <div className="text-foreground text-sm font-bold">0.22</div>
                       <div className="text-xs text-muted-foreground">MAR</div>
                     </div>
                   </div>

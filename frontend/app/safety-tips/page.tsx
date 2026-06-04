@@ -103,13 +103,24 @@ const emergencyTips = [
   },
 ];
 
-const statistics = [
-  { value: '100,000', label: 'Crashes per year involve drowsy driving' },
-  { value: '1,550', label: 'Deaths annually from fatigue-related accidents' },
-  { value: '71,000', label: 'Injuries caused by drowsy driving yearly' },
-  { value: '6%', label: 'Of all fatal crashes involve drowsy driving' },
+const stats = [
+  {
+    value: "100K+",
+    label: "Drowsy Driving Crashes / Year",
+  },
+  {
+    value: "1,550+",
+    label: "Fatigue-Related Deaths",
+  },
+  {
+    value: "71K+",
+    label: "Injuries Reported Annually",
+  },
+  {
+    value: "6%",
+    label: "Fatal Crashes Due to Drowsiness",
+  },
 ];
-
 export default function SafetyTipsPage() {
   return (
     <div className="min-h-screen pb-16">

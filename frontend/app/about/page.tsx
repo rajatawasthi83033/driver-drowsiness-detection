@@ -35,7 +35,7 @@ const technologies = [
   {
     category: 'AI/ML',
     items: [
-      { name: 'dlib', description: 'Facial landmark detection' },
+      { name: 'MediaPipe Face Mesh', description: 'Facial landmark tracking' },
       { name: 'SciPy', description: 'Scientific computing' },
       { name: 'NumPy', description: 'Numerical operations' },
       { name: 'imutils', description: 'Image processing utilities' },
@@ -46,31 +46,30 @@ const technologies = [
 const futureImprovements = [
   {
     title: 'Mobile App Integration',
-    description: 'Native iOS and Android apps for seamless monitoring on any device.',
+    description: 'Monitor driver alertness directly from smartphones and tablets.',
     icon: Users,
   },
   {
-    title: 'Cloud Analytics',
-    description: 'Historical data analysis and driving pattern insights through cloud storage.',
+    title: 'Cloud-Based Reports',
+    description: 'Store and analyze driver fatigue data for long-term insights.',
     icon: Code2,
   },
   {
-    title: 'Multi-driver Support',
-    description: 'Driver profiles with personalized thresholds and preferences.',
+    title: 'Personalized Alert System',
+    description: 'Custom fatigue thresholds and alert preferences for each driver.',
     icon: Shield,
   },
   {
-    title: 'Vehicle Integration',
-    description: 'Direct integration with vehicle systems for automated safety responses.',
+    title: 'Voice Assistant Alerts',
+    description: 'Smart voice warnings when signs of drowsiness are detected.',
     icon: Zap,
   },
 ];
-
 const projectGoals = [
-  'Reduce drowsy driving accidents by providing real-time monitoring',
-  'Create an accessible, affordable safety system for all drivers',
+  'Detect driver fatigue and drowsiness before it becomes dangerous',
+  'Provide real-time alerts that help drivers stay awake and attentive',
   'Leverage AI and computer vision for accurate fatigue detection',
-  'Build an intuitive interface that drivers can trust and rely on',
+  'Deliver a simple and reliable monitoring system for everyday drivers',
 ];
 
 export default function AboutPage() {
@@ -90,8 +89,8 @@ export default function AboutPage() {
               About This <span className="text-safe">Project</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              An AI-powered driver safety system designed to prevent accidents 
-              caused by drowsy driving through real-time monitoring and alerts.
+              An AI-powered Driver Drowsiness Detection System that monitors driver alertness in real time and provides instant fatigue alerts before dangerous sleep episodes occur.
+              
             </p>
           </div>
 
@@ -104,10 +103,12 @@ export default function AboutPage() {
                     Our <span className="text-safe">Mission</span>
                   </h2>
                   <p className="text-muted-foreground mb-6 leading-relaxed">
-                    Driver drowsiness is a leading cause of road accidents worldwide. 
-                    Our mission is to leverage cutting-edge AI and computer vision 
-                    technology to create a reliable, real-time drowsiness detection 
-                    system that can save lives.
+                    Driver fatigue is one of the major contributors to road accidents on 
+                    Indian highways, especially among commercial vehicle drivers,
+                    long-distance travelers, and night-shift commuters.
+                    Our mission is to develop a reliable real-time driver drowsiness
+                    detection system that can identify fatigue early and alert drivers
+                    before they fall asleep while driving.
                   </p>
                   <p className="text-muted-foreground leading-relaxed">
                     This project combines Python-based backend processing with OpenCV 
@@ -147,16 +148,19 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
-                  stat: '4.8 Lakh+',
-                  label: 'Road accidents reported annually in India',
+                  stat: '13%',
+                  label: 'Highway accidents linked to driver fatigue',
+                  icon: Users,
                 },
                 {
-                  stat: '1.7 Lakh+',
-                  label: 'Lives lost on Indian roads every year',
+                  stat: '24/7',
+                  label: 'Real-time driver monitoring',
+                  icon: Target,
                 },
                 {
                   stat: '20 Hours',
-                  label: 'Being awake this long impairs driving like alcohol',
+                  label: 'Wakefulness can impair driving like alcohol',
+                  icon: Activity,
                 },
               ].map((item) => {
                 const Icon = item.icon;
@@ -277,50 +281,52 @@ export default function AboutPage() {
             
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 This project was successfully developed by a dedicated team of students
-                passionate about Artificial Intelligence, Computer Vision, and Road Safety.
+                passionate about Artificial Intelligence, Computer Vision, and Driver Safety Systems.
               </p>
             </div>
                       
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
-          
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+              {/* Row 1 */}
               <div className="glass-card rounded-xl p-6 text-center">
                 <div className="w-16 h-16 rounded-full bg-safe/10 flex items-center justify-center mx-auto mb-4">
                   <Users className="w-8 h-8 text-safe" />
                 </div>
                 <h3 className="text-xl font-semibold">Rajat Awasthi</h3>
               </div>
-          
+            
               <div className="glass-card rounded-xl p-6 text-center">
                 <div className="w-16 h-16 rounded-full bg-safe/10 flex items-center justify-center mx-auto mb-4">
                   <Users className="w-8 h-8 text-safe" />
                 </div>
                 <h3 className="text-xl font-semibold">Yogesh Kumar</h3>
               </div>
-          
+            
               <div className="glass-card rounded-xl p-6 text-center">
                 <div className="w-16 h-16 rounded-full bg-safe/10 flex items-center justify-center mx-auto mb-4">
                   <Users className="w-8 h-8 text-safe" />
                 </div>
                 <h3 className="text-xl font-semibold">Vaibhav Shrivastav</h3>
-        
               </div>
-          
+            
+              {/* Empty space */}
+              <div className="hidden lg:block"></div>
+            
+              {/* Row 2 */}
               <div className="glass-card rounded-xl p-6 text-center">
                 <div className="w-16 h-16 rounded-full bg-safe/10 flex items-center justify-center mx-auto mb-4">
                   <Users className="w-8 h-8 text-safe" />
                 </div>
                 <h3 className="text-xl font-semibold">Palak Shrivastav</h3>
-                
               </div>
-          
+            
               <div className="glass-card rounded-xl p-6 text-center">
                 <div className="w-16 h-16 rounded-full bg-safe/10 flex items-center justify-center mx-auto mb-4">
                   <Users className="w-8 h-8 text-safe" />
                 </div>
                 <h3 className="text-xl font-semibold">Anuska Maurya</h3>
-                
               </div>
-          
+            
             </div>
           </section>
 

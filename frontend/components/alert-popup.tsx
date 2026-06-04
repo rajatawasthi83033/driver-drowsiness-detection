@@ -38,9 +38,7 @@ export function AlertPopup({
   }, []);
 
   useEffect(() => {
-    const isDanger =
-      status?.state === 'Dangerous' ||
-      status?.sleep_risk;
+    const isDanger = status?.alarm;
 
     if (isDanger) {
       setIsVisible(true);

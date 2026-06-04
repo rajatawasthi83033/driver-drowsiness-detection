@@ -103,7 +103,7 @@ const emergencyTips = [
   },
 ];
 
-const stats = [
+const statistics = [
   {
     value: "100K+",
     label: "Drowsy Driving Crashes / Year",

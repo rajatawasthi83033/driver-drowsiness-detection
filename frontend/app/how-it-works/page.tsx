@@ -28,9 +28,9 @@ const steps = [
     number: '02',
     icon: Scan,
     title: 'AI Detects Eyes & Mouth',
-    description: 'MediaPipe facial landmark detection identifies 68 key points on the face, focusing on eyes and mouth regions.',
+    description: 'MediaPipe Face Mesh detects 468 facial landmarks for accurate eye and mouth tracking.',
     details: [
-      '68-point facial landmark detection',
+      '468-point facial landmark detection',
       'Eye region tracking',
       'Mouth position analysis',
       'Head pose estimation',
@@ -40,7 +40,7 @@ const steps = [
     number: '03',
     icon: Brain,
     title: 'Calculates Fatigue Metrics',
-    description: 'Advanced algorithms calculate Eye Aspect Ratio (EAR) and Mouth Aspect Ratio (MAR) to determine fatigue levels.',
+    description: 'The system continuously calculates Eye Aspect Ratio (EAR) and Mouth Aspect Ratio (MAR) to detect blinking patterns, prolonged eye closure, and yawning behavior.',
     details: [
       'EAR threshold monitoring',
       'Yawn detection via MAR',
@@ -57,7 +57,7 @@ const steps = [
       'Instant audio alarms',
       'Visual dashboard alerts',
       'Progressive warning levels',
-      'Alert logging and history',
+      'Real-time fatigue warnings',
     ],
   },
 ];
@@ -100,8 +100,7 @@ export default function HowItWorksPage() {
               How It <span className="text-safe">Works</span>
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our AI-powered system uses computer vision and machine learning 
-              to detect drowsiness in real-time and keep drivers safe.
+              Our AI-powered system uses Computer Vision and Facial Landmark Analysis to detect driver fatigue and drowsiness in real time.
             </p>
           </div>
 
@@ -212,7 +211,7 @@ export default function HowItWorksPage() {
                 { name: 'OpenCV', desc: 'Computer Vision' },
                 { name: 'MediaPipe', desc: 'Face Detection' },
                 { name: 'Python', desc: 'Backend Processing' },
-                { name: 'React', desc: 'Frontend Interface' },
+                { name: 'Next.js', desc: 'Frontend Framework' },
               ].map((tech) => (
                 <div key={tech.name} className="text-center p-4 bg-secondary/30 rounded-xl">
                   <div className="text-lg font-semibold text-safe">{tech.name}</div>

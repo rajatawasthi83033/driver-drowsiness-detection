@@ -130,10 +130,17 @@ export default function DashboardPage() {
         
           if (
             isDanger &&
-            !showAlert &&
+            !showAlert
             !alertCooldown
           ) {
             setShowAlert(true);
+          }
+          
+          if (
+            !isDanger &&
+            showAlert
+          ) {
+            setShowAlert(false);
           }
         }
   
@@ -222,7 +229,7 @@ export default function DashboardPage() {
   
       setTimeout(() => {
         setAlertCooldown(false);
-      }, 10000);
+      }, 3000);
   
     };
   return (

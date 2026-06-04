@@ -36,7 +36,7 @@ const features = [
 ];
 
 const stats = [
-  { value: '100K+', label: 'Lives Protected' },
+  
   { value: '99.2%', label: 'Detection Accuracy' },
   { value: '<50ms', label: 'Response Time' },
   { value: '24/7', label: 'Monitoring' },

@@ -105,20 +105,20 @@ const emergencyTips = [
 
 const statistics = [
   {
-    value: "100K+",
-    label: "Drowsy Driving Crashes / Year",
+    value: "2-4 Sec",
+    label: "Microsleep Duration",
   },
   {
-    value: "1,550+",
-    label: "Fatigue-Related Deaths",
+    value: "60%",
+    label: "Higher Crash Risk While Drowsy",
   },
   {
-    value: "71K+",
-    label: "Injuries Reported Annually",
+    value: "2 Hours",
+    label: "Recommended Break Interval",
   },
   {
-    value: "6%",
-    label: "Fatal Crashes Due to Drowsiness",
+    value: "7-9 Hrs",
+    label: "Recommended Sleep Before Long Trips",
   },
 ];
 export default function SafetyTipsPage() {
@@ -156,7 +156,7 @@ export default function SafetyTipsPage() {
                 ))}
               </div>
               <p className="text-xs text-muted-foreground text-center mt-6">
-                Source: National Highway Traffic Safety Administration (NHTSA)
+                Source: Road Safety Research, Sleep Foundation & Driver Fatigue Studies
               </p>
             </div>
           </section>

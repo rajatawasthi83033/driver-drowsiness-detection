@@ -241,13 +241,11 @@ export default function DashboardPage() {
           {/* Header */}
           <div className="mb-8">
             <h1 className="text-3xl font-bold mb-2">
-              Monitoring Dashboard
+              Driver Monitoring Dashboard
             </h1>
-
+            
             <p className="text-muted-foreground">
-              Real-time driver
-              drowsiness detection and
-              monitoring system
+              Real-time driver alertness monitoring and fatigue detection system.
             </p>
           </div>
 

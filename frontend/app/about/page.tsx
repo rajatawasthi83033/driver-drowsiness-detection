@@ -20,7 +20,7 @@ const technologies = [
       { name: 'Python', description: 'Core programming language' },
       { name: 'OpenCV', description: 'Computer vision library' },
       { name: 'MediaPipe', description: 'Face detection & landmarks' },
-      { name: 'Flask/FastAPI', description: 'REST API framework' },
+      { name: 'FastAPI', description: 'REST API framework' },
     ],
   },
   {
@@ -346,10 +346,21 @@ export default function AboutPage() {
               
               <div className="space-y-4">
                 {[
-                  { method: 'GET', endpoint: '/video_feed', desc: 'Live camera stream' },
-                  { method: 'POST', endpoint: '/start', desc: 'Start detection' },
-                  { method: 'POST', endpoint: '/stop', desc: 'Stop detection' },
-                  { method: 'GET', endpoint: '/status', desc: 'Real-time status JSON' },
+                  {
+                    method: 'GET',
+                    endpoint: '/',
+                    desc: 'API health check',
+                  },
+                  {
+                    method: 'POST',
+                    endpoint: '/detect',
+                    desc: 'Analyze image for drowsiness',
+                  },
+                  {
+                    method: 'GET',
+                    endpoint: '/static/alarm_sound.mp3',
+                    desc: 'Alarm audio file',
+                  },
                 ].map((api) => (
                   <div key={api.endpoint} className="flex items-center gap-4 p-3 bg-secondary/30 rounded-lg">
                     <span className={`px-2 py-1 rounded text-xs font-mono font-bold ${

@@ -270,6 +270,7 @@ export default function AboutPage() {
 
           {/* Team Section */}
          
+          {/* Team Section */}
           <section className="mb-16">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">
@@ -286,18 +287,16 @@ export default function AboutPage() {
               </p>
             </div>
           
-            <div className="flex flex-wrap justify-center gap-8">
-          
+            {/* ROW 1 (3 members) */}
+            <div className="flex flex-wrap justify-center gap-8 mb-8">
               {[
                 "Rajat Awasthi",
                 "Yogesh Kumar",
-                "Vaibhav Shrivastav",
-                "Palak Shrivastav",
-                "Anushka Maurya"
+                "Vaibhav Shrivastav"
               ].map((member) => (
                 <div
                   key={member}
-                  className="glass-card w-72 h-72 rounded-full flex flex-col items-center justify-center text-center"
+                  className="glass-card w-64 h-64 rounded-full flex flex-col items-center justify-center text-center"
                 >
                   <div className="w-20 h-20 rounded-full bg-safe/10 flex items-center justify-center mb-4">
                     <Users className="w-10 h-10 text-safe" />
@@ -308,7 +307,27 @@ export default function AboutPage() {
                   </h3>
                 </div>
               ))}
+            </div>
           
+            {/* ROW 2 (center 2 members) */}
+            <div className="flex justify-center gap-10">
+              {[
+                "Palak Shrivastav",
+                "Anushka Maurya"
+              ].map((member) => (
+                <div
+                  key={member}
+                  className="glass-card w-64 h-64 rounded-full flex flex-col items-center justify-center text-center"
+                >
+                  <div className="w-20 h-20 rounded-full bg-safe/10 flex items-center justify-center mb-4">
+                    <Users className="w-10 h-10 text-safe" />
+                  </div>
+          
+                  <h3 className="text-lg font-semibold px-4">
+                    {member}
+                  </h3>
+                </div>
+              ))}
             </div>
           </section>
           

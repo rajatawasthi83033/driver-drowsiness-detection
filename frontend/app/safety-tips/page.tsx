@@ -280,7 +280,7 @@ export default function SafetyTipsPage() {
             <p className="text-muted-foreground mb-4">
               If you witness a drowsy driver or are in an accident, call emergency services immediately.
             </p>
-            <div className="text-3xl font-bold text-safe">911</div>
+            <div className="text-3xl font-bold text-safe">1033</div>
           </section>
 
           {/* CTA */}

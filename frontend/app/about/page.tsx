@@ -296,7 +296,7 @@ export default function AboutPage() {
               ].map((member) => (
                 <div
                   key={member}
-                  className="glass-card rounded-3xl p-6 text-center w-[320px]"
+                  className="glass-card rounded-full p-6 text-center w-[320px]"
                 >
                   <div className="w-16 h-16 rounded-full bg-safe/10 flex items-center justify-center mx-auto mb-4">
                     <Users className="w-8 h-8 text-safe" />

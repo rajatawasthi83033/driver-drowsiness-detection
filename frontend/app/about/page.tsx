@@ -285,47 +285,28 @@ export default function AboutPage() {
               </p>
             </div>
                       
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="flex flex-wrap justify-center gap-6">
 
-              {/* Row 1 */}
-              <div className="glass-card rounded-xl p-6 text-center">
-                <div className="w-16 h-16 rounded-full bg-safe/10 flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-8 h-8 text-safe" />
-                </div>
-                <h3 className="text-xl font-semibold">Rajat Awasthi</h3>
-              </div>
+              {[
+                "Rajat Awasthi",
+                "Yogesh Kumar",
+                "Vaibhav Shrivastav",
+                "Palak Shrivastav",
+                "Anushka Maurya"
+              ].map((member) => (
+                <div
+                  key={member}
+                  className="glass-card rounded-3xl p-6 text-center w-[320px]"
+                >
+                  <div className="w-16 h-16 rounded-full bg-safe/10 flex items-center justify-center mx-auto mb-4">
+                    <Users className="w-8 h-8 text-safe" />
+                  </div>
             
-              <div className="glass-card rounded-xl p-6 text-center">
-                <div className="w-16 h-16 rounded-full bg-safe/10 flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-8 h-8 text-safe" />
+                  <h3 className="text-xl font-semibold">
+                    {member}
+                  </h3>
                 </div>
-                <h3 className="text-xl font-semibold">Yogesh Kumar</h3>
-              </div>
-            
-              <div className="glass-card rounded-xl p-6 text-center">
-                <div className="w-16 h-16 rounded-full bg-safe/10 flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-8 h-8 text-safe" />
-                </div>
-                <h3 className="text-xl font-semibold">Vaibhav Shrivastav</h3>
-              </div>
-            
-              {/* Empty space */}
-              <div className="hidden lg:block"></div>
-            
-              {/* Row 2 */}
-              <div className="glass-card rounded-xl p-6 text-center">
-                <div className="w-16 h-16 rounded-full bg-safe/10 flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-8 h-8 text-safe" />
-                </div>
-                <h3 className="text-xl font-semibold">Palak Shrivastav</h3>
-              </div>
-            
-              <div className="glass-card rounded-xl p-6 text-center">
-                <div className="w-16 h-16 rounded-full bg-safe/10 flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-8 h-8 text-safe" />
-                </div>
-                <h3 className="text-xl font-semibold">Anuska Maurya</h3>
-              </div>
+              ))}
             
             </div>
           </section>

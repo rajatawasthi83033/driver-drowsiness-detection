@@ -269,24 +269,25 @@ export default function AboutPage() {
           </section>
 
           {/* Team Section */}
+         
           <section className="mb-16">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">
                 Our <span className="text-safe">Team</span>
               </h2>
-            
+          
               <p className="text-safe font-medium text-lg mb-4">
                 Team Visionary Coders
               </p>
-            
+          
               <p className="text-muted-foreground max-w-2xl mx-auto">
                 This project was successfully developed by a dedicated team of students
                 passionate about Artificial Intelligence, Computer Vision, and Driver Safety Systems.
               </p>
             </div>
-                      
-            <div className="flex flex-wrap justify-center gap-6">
-
+          
+            <div className="flex flex-wrap justify-center gap-8">
+          
               {[
                 "Rajat Awasthi",
                 "Yogesh Kumar",
@@ -296,21 +297,20 @@ export default function AboutPage() {
               ].map((member) => (
                 <div
                   key={member}
-                  className="glass-card rounded-full p-6 text-center w-[320px]"
+                  className="glass-card w-64 h-64 rounded-full flex flex-col items-center justify-center text-center"
                 >
-                  <div className="w-16 h-16 rounded-full bg-safe/10 flex items-center justify-center mx-auto mb-4">
-                    <Users className="w-8 h-8 text-safe" />
+                  <div className="w-20 h-20 rounded-full bg-safe/10 flex items-center justify-center mb-4">
+                    <Users className="w-10 h-10 text-safe" />
                   </div>
-            
-                  <h3 className="text-xl font-semibold">
+          
+                  <h3 className="text-lg font-semibold px-4">
                     {member}
                   </h3>
                 </div>
               ))}
-            
+          
             </div>
           </section>
-
           
 
           
